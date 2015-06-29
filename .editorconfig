@@ -1,5 +1,10 @@
 root = true
 
-[*.{js,scss,html,md,markdown}]
+[*.{js,scss,md,markdown}]
 indent_style = space
 indent_size = 4
+
+
+[*.html]
+indent_style = space
+indent_size = 2

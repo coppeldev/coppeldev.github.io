@@ -1,0 +1,16 @@
+<ul class="menu">
+  <li class="header">Introducción</li>
+  <li>
+    <a href="{{ "/introduction/index.html" | prepend: site.baseurl }}">Introducción</a>
+  </li>
+  {% assign pages = site.pages | sort:"menu_order"  %}
+  {% for page in pages %}
+      {% if page.categories contains 'introduction' %}
+        {% if page.version == site.last_version %}
+          <li>
+            <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          </li>
+        {% endif %}
+      {% endif %}
+  {% endfor %}
+</ul>

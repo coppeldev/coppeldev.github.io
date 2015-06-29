@@ -1,15 +1,37 @@
-<!DOCTYPE html>
-<html>
+---
+layout: home/default
+---
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CoppelDev</title>
-</head>
-<body>
-    <script type="text/javascript">
-        document.location = '/php';
-    </script>
-  </body>
-</html>
+<div class="hero-page">
+  <div class="hero-content">
+    <img class="hero-logo-image" src="{{ "/images/odc-white.svg" | prepend: site.baseurl }}" />
+    <div class="tagline">
+      <div class="hero-header">
+        Optimización <br>de Código
+      </div>
+      <div class="headline">
+        Guia de programaci&oacute;n
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="home">
+
+    <h1 class="page-heading">Guias para el desarrollador</h1>
+
+    <ul class="programming-languages-list">
+      {% for page in site.pages %}
+        {% if page.category == "frontpage" %}
+        <li>
+          <a href="{{ page.url | prepend: site.baseurl }}" class="programming-languages-list-{{ page.programming_name }}">
+            <i class="{{ page.icon_classname }}"></i>
+          </a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="hero-page">
+  <div class="hero-content">
+    <div class="hero-logo">
+      <i class="{{ page.icon_classname }}"></i>
+    </div>
+    <div class="tagline">
+      <div class="hero-header">
+        {{ page.title }}
+      </div>
+      <div class="headline">
+        {{ page.subtitle }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="home">
+    <div>
+      {% assign pages = site.pages | sort:"menu_order"  %}
+      <ul class="icon-menu">
+        {% for _page in pages %}
+          {% capture section %}{{ page.section_name }} section{% endcapture %}
+          {% if _page.section == section %}
+          <li>
+            <a href="{{ _page.url | prepend: site.baseurl }}">
+              <span class="fa fa-{{ _page.icon }}"></span>
+              <span>{{ _page.title }}</span>
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

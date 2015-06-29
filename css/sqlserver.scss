@@ -1,0 +1,65 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+@import "colors";
+
+// Colors
+
+$primary-1-color: $yellow-700;
+$primary-2-color: $yellow-800;
+$primary-3-color: $yellow-200;
+$accent-1-color: $pink-A200;
+$accent-2-color: $pink-A400;
+$accent-3-color: $pink-A100;
+
+
+// Our variables
+$base-font-family: Roboto, sans-serif;
+$base-font-size:   16px;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: $dark-white;
+$brand-color:      $white;
+$nav-link-color:   $white;
+$menu-icon-color:  $full-white;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    1000px;
+$content-menu-width: 200px;
+$inner-content-width: $content-width - $content-menu-width - ($spacing-unit * 3);
+
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+
+// Using media queries with like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "base",
+        "layout",
+        "syntax-highlighting"
+;

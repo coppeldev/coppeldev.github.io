@@ -1,0 +1,19 @@
+# Site settings
+title: PHP
+email:
+description: > # this means to ignore newlines until "baseurl:"
+  Sitio dedicado a la recopilación de las mejores prácticas y estandares
+  para PHP.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://coppeldev.github.io" # the base hostname & protocol for your site
+exclude: [Gemfile, Gemfile.lock, Procfile]
+encoding: utf-8
+
+last_version: 1.0
+
+sass:
+    style: :compressed
+
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]

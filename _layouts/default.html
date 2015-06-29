@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body {% if page.id != 'home'  %} style="margin-top: 57px;" {% endif %}>
+
+    {% include header.html %}
+
+    <div class="main-menu-layer menu-hidden">
+
+    </div>
+
+    <div class="main-menu menu-panel-hidden">
+      <div class="menu-top-header">
+        <a href="{{ site.url }}">
+          <img class="menu-hero-logo" src="{{ "/images/odc-white.svg" | prepend: site.baseurl }}" />
+          <span class="menu-hero-text">Optimización de Código</span>
+        </a>
+      </div>
+
+      <div class="menu-header">
+        Guias de desarrollo
+      </div>
+
+      <ul class="menu-container">
+        {% for page in site.pages %}
+          {% if page.category == "frontpage" %}
+          <li>
+            <a href="{{ page.url | prepend: site.baseurl }}">
+              {{ page.menu_text }}
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    {{ content }}
+
+
+    {% include footer.html %}
+
+    <script src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/toc.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/script.js" | prepend: site.baseurl }}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#toc').toc({
+        title: '<i>Contenido</i>',
+        listType: 'ul',
+        minimumHeaders: 3,
+        showEffect: 'slideDown',
+        showSpeed: 5
+      });
+    });
+    </script>
+
+    <script type="text/javascript">
+      WebFontConfig = {
+        google: {
+          families: [
+            'Open+Sans:400,600,700:latin',
+            //'Righteous::latin',
+            //'Contrail+One::latin'
+          ]
+        }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+
+  </body>
+
+</html>

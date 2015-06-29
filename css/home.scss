@@ -1,0 +1,122 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+@import "colors";
+
+// Colors
+
+$primary-1-color: $white;
+$primary-2-color: $blue-700;
+$primary-3-color: $light-blue-100;
+$accent-1-color: $light-white;
+$accent-2-color: $light-white;
+$accent-3-color: $light-white;
+
+
+// Our variables
+$base-font-family: Roboto, sans-serif;
+$base-font-size:   16px;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: $dark-white;
+$brand-color:      $blue-500;
+$nav-link-color:   $blue-500;
+$menu-icon-color:  $blue-500; //$full-white;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    1000px;
+$content-menu-width: 200px;
+$inner-content-width: $content-width - $content-menu-width - ($spacing-unit * 3);
+
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+
+// Using media queries with like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "base",
+        "layout",
+        "syntax-highlighting"
+;
+
+$languages: (
+    ('php', $indigo-500, "12em"),
+    ('java', $red-700, "12em"),
+    ('angularjs', $red-500, "12em"),
+    ('cplusplus', $indigo-700, "12em"),
+    ('android', $light-green-500, "12em"),
+    ('javascript', $yellow-500, "12em"),
+    ('postgresql', $blue-800, "12em"),
+    ('sqlserver', $yellow-700, "8em")
+);
+
+@for $i from 0 to length($languages) {
+    $item: nth($languages, $i+1);
+    $lang-name: unquote(nth($item, 1));
+    $color: unquote(nth($item, 2));
+    $font-size:  unquote(nth($item, 3));
+
+    .programming-languages-list-#{$lang-name} {
+        text-align: center;
+        background-color: $color;
+        &:hover {
+            background-color: darken($color, 20%);
+        }
+
+        > i {
+            font-size: $font-size;
+        }
+    }
+}
+
+.programming-languages-list {
+    list-style: none;
+    @extend %clearfix;
+
+    li {
+        display: block;
+        position: relative;
+        margin: 5px 5px 0 0;
+        float: left;
+        width: 222px;
+
+        a {
+            border-radius: 5px;
+            color: $white;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+
+            i {
+                //font-size: 12em;
+            }
+        }
+
+    }
+
+}
