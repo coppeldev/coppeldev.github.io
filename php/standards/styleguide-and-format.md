@@ -10,37 +10,35 @@ version: 1.0
 
 <div id="toc"></div>
 
-Esta guía amplía y extiende el estándar de codificación básica [PSR-1][].
+El objetivo de esta guía es la de reducir la dificultad cuando se lee código de diferentes autores. Lo realiza mediante la enumeración de una serie de reglas y expresiones sobre cómo dar formato al código PHP.
 
-La objetivo de esta guía es la de reducir la dificultad cuando se lee código de diferentes autores. Lo realiza mediante la enumeración de una serie de reglas común y expresiones sobre cómo dar formato al código PHP.
-
-> En el documento original se usa el [RFC 2119][] para el uso de las palabras
+> En el documento original se usa el estándar [RFC 2119][] para el uso de las palabras
 MUST, MUST NOT, SHOULD, SOULD NOT y MAY. Para que la traducción sea lo más fiel
-posible, se traducira siempre MUST como el verbo deber en presente (DEBE,
+posible, se traducirá siempre MUST como el verbo deber en presente (DEBE,
 DEBEN), SHOULD como el verbo deber en condicional (DEBERÍA, DEBERÍAN) y el verbo
 MAY como el verbo PODER.
 
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
-[PSR-0]: {{ "/standards/psr-0.html" | prepend: site.baseurl }}
-[PSR-1]: {{ "/standards/psr-1.html" | prepend: site.baseurl }}
 
 # 1. Introducción
+# 2. Archivos
+## 2.1 Nombre de archivo
 
-# 2. General
+Los nombres de los archivos deben de contener solo caracteres alfanuméricos y utilizar el formato StudlyCase.
 
-### 2.1. Etiquetas PHP
+## 2.2 Extensión
 
-El código PHP DEBE utilizar las etiquetas largas `<?php ?>` o las etiquetas cortas para imprimir salida de información `<?= ?>`; NO DEBE emplear otras variantes.
+La extensión de los archivos es siempre `.php`.
 
-### 2.2. Codificación de caracteres
+## 2.3 Codificación de caracteres
 
 El código PHP DEBE utilizar codificación UTF-8 sin BOM.
 
-### 2.3. Efectos secundarios
+## 2.4 Efectos secundarios
 
 Un archivo DEBERÍA declarar estructuras (clases, funciones, constantes, etc,...) y no causar efectos secundarios, o DEBERÍA ejecutar partes de la lógica de negocio, pero NO DEBERÍA hacer las dos cosas.
 
-La frase "efectos secundarios" significa: que la ejecución de la lógica de negocio no está directamente relacionado con declarar clases, funciones, constantes, etc, *simplemente la de incluir el archivo*.
+La frase "efectos secundarios" se refiere a que la ejecución de la lógica de negocio no está directamente relacionado con declarar clases, funciones, constantes, etc, *simplemente la de incluir el archivo*.
 
 "Efectos secundarios" incluyen, pero no se limitan a: generar salidas, uso explícito de `requiere` o `include`, conexiones a servicios externos, modificación de configuraciones iniciales, enviar errores o excepciones, modificar variables globales o estáticas, leer o escribir un archivo, etc.
 
@@ -48,7 +46,7 @@ El siguiente ejemplo muestra un archivo que incluye las dos: declaraciones y efe
 
 ```php
 <?php
-// efecto secundario: cambiar configuracion inicial
+// efecto secundario: cambiar configuración inicial
 ini_set('error_reporting', E_ALL);
 
 // efecto secundario: cargar ficheros
@@ -84,16 +82,9 @@ if (! function_exists('bar')) {
 }
 ```
 
-### 2.4. Archivos
+# 3. Formato
 
-Todos los archivos PHP DEBEN usar el final de línea Unix LF.
-
-Todos los archivos PHP DEBEN terminar con una línea en blanco.
-
-La etiqueta de cierre `?>` DEBE ser omitida en los archivos que sólo
-contengan código PHP.
-
-### 2.5. Líneas
+## 3.1. Líneas y espacios en blanco
 
 NO DEBE haber un límite estricto en la longitud de la línea.
 
@@ -107,13 +98,17 @@ PUEDEN añadirse líneas en blanco para mejorar la lectura del código y para in
 
 NO DEBE haber más de una sentencia por línea.
 
-### 2.6. Indentación
+Todos los archivos PHP DEBEN usar el final de línea Unix LF.
+
+Todos los archivos PHP DEBEN terminar con una línea en blanco.
+
+## 3.2. Indentación
 
 El código DEBE usar una indentación de 4 espacios, y NO DEBE usar tabuladores para la indentación.
 
 > Nota: Utilizar sólo los espacios, y no mezclar espacios con tabuladores, ayuda a evitar problemas con diffs, parches, historiales y anotaciones. El uso de los espacios también facilita a ajustar la alineación entre líneas.
 
-### 2.7. Palabras clave y `true`/`false`/`null`.
+### 3.3. Palabras clave y `true`/`false`/`null`.
 
 Las [Palabras clave][] de PHP DEBEN estar en minúsculas.
 
@@ -121,9 +116,18 @@ Las constantes de PHP `true`, `false` y `null` DEBEN estar en minúsculas.
 
 [Palabras clave]: http://php.net/manual/es/reserved.keywords.php
 
-# 3. Espacio de nombre y declaraciones `use`
+## 3.4 Estructura del archivo
 
-Cuando esté presente, DEBE haber una línea en blanco después de la declación del `namespace`.
+### 3.4.1. Etiquetas
+
+El código PHP DEBE utilizar las etiquetas largas `<?php ?>` o las etiquetas cortas para imprimir salida de información `<?= ?>`; NO DEBE emplear otras variantes.
+
+La etiqueta de cierre `?>` DEBE ser omitida en los archivos que sólo
+contengan código PHP.
+
+### 3.4.2. Espacios de nombre y declaraciones use
+
+Cuando esté presente, DEBE haber una línea en blanco después de la declaración del `namespace`.
 
 Cuando estén presentes, todas las declaraciones `use` DEBEN ir después de la declaración del `namespace`.
 
@@ -145,12 +149,11 @@ use OtroProveedor\OtroPaquete\BazClase;
 
 ```
 
-
-# 4. Clases, propiedades y métodos
+### 3.4.3. Clase de alto nivel
 
 El término "clase" hace referencia a todas las clases, interfaces o traits.
 
-### 4.1. Extensiones e implementaciones
+#### 3.4.3.1. Extensiones e implementaciones
 
 Las palabras clave `extends` e `implements` DEBEN declararse en la misma línea del nombre de la clase.
 
@@ -188,8 +191,7 @@ class NombreDeClase extends ClasePadre implements
     // constantes, propiedades, métodos
 }
 ```
-
-### 4.2. Propiedades
+#### 3.4.3.2. Propiedades
 
 La visibilidad DEBE ser declarada en todas las propiedades.
 
@@ -199,7 +201,7 @@ NO DEBE declararse más de una propiedad por sentencia.
 
 Los nombres de las propiedades NO DEBERÍAN usar un guión bajo como prefijo para indicar si son privadas o protegidas.
 
-Una declaración de propiedas tendrá el siguiente aspecto.
+Una declaración de propiedades tendrá el siguiente aspecto.
 
 ```php
 <?php
@@ -211,7 +213,7 @@ class NombreDeClase
 }
 ```
 
-### 4.3. Métodos
+#### 3.4.3.4. Métodos
 
 La visibilidad DEBE ser declarada en todos los métodos.
 
@@ -234,7 +236,7 @@ class NombreDeClase
 }
 ```
 
-### 4.4. Argumentos de los métodos
+#### 3.4.3.4.1 Argumentos de los métodos
 
 En la lista de argumentos NO DEBE haber un espacio antes de cada coma y DEBE haber un espacio después de cada coma.
 
@@ -273,7 +275,7 @@ class NombreDeClase
 }
 ```
 
-### 4.5. `abstract`, `final`, y `static`
+### 3.4.3.5. `abstract`, `final`, y `static`
 
 Cuando estén presentes las declaraciones `abstract` y `final`, DEBEN preceder a la declaración de visibilidad.
 
@@ -296,9 +298,9 @@ abstract class NombreDeClase
 }
 ```
 
-### 4.6. Llamadas a métodos y funciones
+### 3.4.3.6. Llamadas a métodos y funciones
 
-Cuando se realize una llamada a un método o a una función, NO DEBE haber un espacio entre el nombre del método o la función y el paréntesis de apertura, NO DEBE haber un espacio después del paréntesis de apertura, y NO DEBE haber un espacio antes del paréntesis de cierre. En la lista de argumentos, NO DEBE haber espacio antes de cada coma y DEBE haber un espacio después de cada coma.
+Cuando se realice una llamada a un método o a una función, NO DEBE haber un espacio entre el nombre del método o la función y el paréntesis de apertura, NO DEBE haber un espacio después del paréntesis de apertura, y NO DEBE haber un espacio antes del paréntesis de cierre. En la lista de argumentos, NO DEBE haber espacio antes de cada coma y DEBE haber un espacio después de cada coma.
 
 ```php
 <?php
@@ -318,7 +320,7 @@ $foo->bar(
 );
 ```
 
-# 5. Estructuras de control
+## 3.5. Estructuras de control
 
 Las reglas de estilo para las estructuras de control son las siguientes:
 
@@ -332,7 +334,7 @@ Las reglas de estilo para las estructuras de control son las siguientes:
 El cuerpo de cada estructura DEBE estar encerrado entre llaves. Esto estandariza el aspecto de las estructuras y reduce la probabilidad de añadir errores como nuevas líneas que se añaden al cuerpo de la estructura.
 
 
-### 5.1. `if`, `elseif`, `else`
+### 3.5.1. `if`, `elseif`, `else`
 
 Una estructura `if` tendrá el siguiente aspecto. Fíjese en el lugar de los paréntesis, los espacios y las llaves; y que `else` y `elseif` están en la misma línea que las llaves de cierre del cuerpo anterior.
 
@@ -350,7 +352,7 @@ if ($expr1) {
 La palabra clave `elseif` DEBERÍA ser usada en lugar de `else if` de forma que todas las palabras clave de la estructura estén compuestas por palabras de un solo término.
 
 
-### 5.2. `switch`, `case`
+### 3.5.2. `switch`, `case`
 
 Una estructura `switch` tendrá el siguiente aspecto. Fíjese en el lugar donde están los paréntesis, los espacios y las llaves. La palabra clave `case` DEBE estar indentada una vez respecto al `switch` y la palabra clave `break` o cualquier otra palabra clave de finalización DEBE estar indentadas al mismo nivel que el cuerpo del `case`. DEBE haber un comentario como `// no break` cuando hay `case` en cascada no vacío.
 
@@ -375,7 +377,7 @@ switch ($expr) {
 ```
 
 
-### 5.3. `while`, `do while`
+### 3.5.3. `while`, `do while`
 
 Una instrucción `while` tendrá el siguiente aspecto. Fíjese en el lugar donde están los paréntesis, los espacios y las llaves.
 
@@ -395,7 +397,7 @@ do {
 } while ($expr);
 ```
 
-### 5.4. `for`
+### 3.5.4. `for`
 
 Una sentencia `for` tendrá el siguiente aspecto. Fíjese en el lugar donde aparecen los paréntesis, los espacios y las llaves.
 
@@ -406,7 +408,7 @@ for ($i = 0; $i < 10; $i++) {
 }
 ```
 
-### 5.5. `foreach`
+### 3.5.5. `foreach`
 
 Un sentencia `foreach` tendrá el siguiente aspecto. Fíjese en el lugar donde aparecen los paréntesis, los espacios y las llaves.
 
@@ -417,7 +419,7 @@ foreach ($iterable as $key => $value) {
 }
 ```
 
-### 5.6. `try`, `catch`
+### 3.5.6. `try`, `catch`
 
 Un bloque `try catch` tendrá el siguiente aspecto. Fíjese en el lugar donde aparecen los paréntesis, los espacios y los llaves.
 
@@ -433,9 +435,9 @@ try {
 }
 ```
 
-# 6. Closures
+## 3.6. Closures
 
-Las closures DEBEN declararse con un espacio después de la palabra clave `function`, y un espacio antes y después de la parabra clave `use`.
+Las closures DEBEN declararse con un espacio después de la palabra clave `function`, y un espacio antes y después de la palabra clave `use`.
 
 La llave de apertura DEBE ir en la misma línea, y la llave de cierre DEBE ir en la línea siguiente al final del cuerpo.
 
@@ -458,7 +460,7 @@ $closureConArgumentosYVariables = function ($arg1, $arg2) use ($var1, $var2) {
 };
 ```
 
-La lista de argumetos y la lista de variables PUEDEN ser divididas en múltiples líneas, donde cada nueva línea se indentará una vez. Cuando esto suceda, el primer elemento de la lista DEBE ir en una nueva línea y DEBE haber sólo un argumento o variable por línea.
+La lista de argumentos y la lista de variables PUEDEN ser divididas en múltiples líneas, donde cada nueva línea se indentará una vez. Cuando esto suceda, el primer elemento de la lista DEBE ir en una nueva línea y DEBE haber sólo un argumento o variable por línea.
 
 Cuando la lista de argumentos o variables se divide en varias líneas, el paréntesis de cierre y la llave de apertura DEBEN estar juntos en su propia línea separados por un espacio.
 
@@ -524,8 +526,7 @@ $foo->bar(
 );
 ```
 
-
-# 7. Conclusión
+# 4. Conclusión
 
 Hay muchos elementos de estilo y prácticas omitidas intencionadamente en esta guía. Estos incluyen pero no se limitan a:
 

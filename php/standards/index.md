@@ -10,6 +10,10 @@ icon: book
 menu_order: 2
 ---
 
+Esta guía amplía y extiende el estándar de codificación básica [PSR-1][].
+
+[PSR-1]: {{ "/standards/psr-1.html" | prepend: site.baseurl }}
+
 En Internet existe una gran cantidad de grupos de personas que se encargan de
 buscar la mejor manera de hacer las cosas en todos los aspectos. Y si hablamos
 de los referentes a las tecnologías de información podemos encontrarnos con

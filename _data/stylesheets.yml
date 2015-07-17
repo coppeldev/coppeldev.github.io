@@ -1,0 +1,7 @@
+---
+    -
+        url: /index.html
+        css: home
+    -
+        url: /php
+        css: php
